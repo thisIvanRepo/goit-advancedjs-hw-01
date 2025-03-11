@@ -4,23 +4,11 @@ const formDate = {
 };
 
 const form = document.querySelector('.feedback-form');
-const btnSubmit = document.querySelector('.btn-submit');
 
 form.addEventListener('input', event => {
   if (event.target.name) {
     formDate[event.target.name] = event.target.value;
     localStorage.setItem('feedback-form-state', JSON.stringify(formDate));
-  }
-});
-
-btnSubmit.addEventListener('click', event => {
-  const { email, message } = formDate;
-  if (email === '' || message === '') {
-    alert('Fill please all fields');
-    return;
-  } else {
-    console.log(formDate);
-    localStorage.clear();
   }
 });
 
@@ -33,3 +21,18 @@ if (savedData) {
   form.elements.email.value = formDate.email;
   form.elements.message.value = formDate.message;
 }
+
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  const { email, message } = formDate;
+  if (email === '' || message === '') {
+    alert('Fill please all fields');
+    return;
+  } else {
+    console.log(formDate);
+    localStorage.removeItem('feedback-form-state');
+    formDate.email = '';
+    formDate.message = '';
+    form.reset();
+  }
+});
