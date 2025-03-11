@@ -1,5 +1,5 @@
-@import url("./styles.css");
-@import url("simplelightbox/dist/simple-lightbox.min.css");
+@import url('./styles.css');
+@import url('simplelightbox/dist/simple-lightbox.min.css');
 
 .gallery {
   list-style: none;
